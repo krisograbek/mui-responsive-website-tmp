@@ -1,3 +1,4 @@
+import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import Paper from '@mui/material/Paper';
@@ -5,6 +6,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import './App.css';
+import Brightness3Outlined from '@mui/icons-material/Brightness3Outlined';
+import WbSunnyOutlined from '@mui/icons-material/WbSunnyOutlined';
 
 
 const lightTheme = createTheme({
@@ -49,8 +52,9 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const [themeMode, setThemeMode] = useState(lightTheme);
+  const [themeMode, setThemeMode] = useState(true);
   const theme = themeMode ? darkTheme : lightTheme;
+  const icon = themeMode ? <WbSunnyOutlined /> : <Brightness3Outlined />;
 
   return (
     <ThemeProvider theme={theme}>
@@ -68,6 +72,14 @@ function App() {
           <Typography variant="subtitle1" color="primary">
             You can click me
           </Typography>
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="mode"
+            onClick={() => setThemeMode(!themeMode)}
+          >
+            {icon}
+          </IconButton>
           <Button onClick={() => setThemeMode(!themeMode)} color="primary" variant="outlined">Click me</Button>
         </header>
       </Paper>
