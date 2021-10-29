@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import { grey } from '@mui/material/colors';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
@@ -14,7 +15,16 @@ const lightTheme = createTheme({
       dark: '#004d40',
       contrastText: '#fff',
     },
+    text: {
+      primary: grey[700],
+      secondary: '#000'
+    }
   },
+  typography: {
+    h4: {
+      color: '#000'
+    }
+  }
 });
 
 const darkTheme = createTheme({
@@ -26,6 +36,15 @@ const darkTheme = createTheme({
       dark: '#00a69e',
       contrastText: '#fff',
     },
+    text: {
+      primary: grey[400],
+      secondary: '#fff'
+    }
+  },
+  typography: {
+    h4: {
+      color: '#fff'
+    }
   }
 });
 
@@ -37,14 +56,17 @@ function App() {
     <ThemeProvider theme={theme}>
       <Paper elevation={0} square={true}>
         <header className="App-header">
-          <Typography variant="h2" color="primary">
-            Hi, I'm Kris
+          <Typography variant="h4">
+            Hi, I am an important information
+          </Typography>
+          <Typography variant="subtitle1">
+            I am a body text. You'll see me all over the place
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary">
+            I am also important
           </Typography>
           <Typography variant="subtitle1" color="primary">
-            Learning is my passion
-          </Typography>
-          <Typography variant="subtitle2" color="primary">
-            I love programming
+            You can click me
           </Typography>
           <Button onClick={() => setThemeMode(!themeMode)} color="primary" variant="outlined">Click me</Button>
         </header>
