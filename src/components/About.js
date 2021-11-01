@@ -1,14 +1,28 @@
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import React from 'react'
+import makeStyles from '@mui/styles/makeStyles'
+
+const useStyles = makeStyles(({
+  item: {
+    paddingTop: 64,
+  }
+}))
 
 function About() {
+  const { item } = useStyles();
   return (
-    <Grid id="about" container>
-      <Grid item>
-        <h2>
+    <Grid
+      container
+      direction="column"
+      id="about"
+    >
+      <Grid item
+        className={item}
+      >
+        <Typography variant="h4" component="h2">
           About
-        </h2>
+        </Typography>
       </Grid>
       <Grid item>
         <Typography>
