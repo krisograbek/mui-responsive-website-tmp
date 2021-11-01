@@ -7,24 +7,29 @@ import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Slide from '@mui/material/Slide';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Slide from '@mui/material/Slide';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 import makeStyles from '@mui/styles/makeStyles';
 import useTheme from '@mui/styles/useTheme';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
 import React, { useState } from 'react';
 
 const mobileStyles = makeStyles({
   menu: {
-    alignSelf: 'flex-end'
+    // flexGrow: 1,
+    // alignSelf: 'flex-end',
+    // justifySelf: 'flex-end'
   }
 });
 
 const useStyles = makeStyles({
-  logo: {
+  navItems: {
     flexGrow: 1
+  },
+  logo: {
+    padding: '0 16px'
   }
 });
 
@@ -35,61 +40,54 @@ const menuItems = [
   { link: "#contact", name: "contact" }
 ]
 
-function HideOnScroll(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
-
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
-
 function MobileNavbar() {
   const { menu } = mobileStyles();
   const [anchor, setAnchor] = useState(null);
+  const open = Boolean(anchor)
   const handleMenu = (event) => {
     setAnchor(event.currentTarget);
   };
+
   const handleMenuClose = () => {
     setAnchor(null);
   }
   return (
-    <>
+    <Grid
+      container
+      // spacing={1}
+      justifyContent="flex-end"
+    >
       <IconButton
         aria-label="menu"
         onClick={handleMenu}
         className={menu}
+        color="primary"
       >
         <MenuIcon />
       </IconButton>
       <Menu
         id="menu"
         anchorEl={anchor}
-        open={Boolean(anchor)}
+        open={open}
         onClose={handleMenuClose}
       >
         {menuItems.map(({ link, name }) => {
           return (
-            <MenuItem
+            <Link
               key={name}
-              component={Link}
               color="primary"
               href={link}
+              onClick={() => setAnchor(null)}
             >
-              {name}
-            </MenuItem>
+              <MenuItem>
+                {name}
+              </MenuItem>
+            </Link>
           )
         })}
 
       </Menu>
-    </>
+    </Grid>
   )
 }
 
@@ -110,15 +108,17 @@ function DesktopNavbar() {
 
 function Header(props) {
   const { themeMode, setThemeMode } = props;
+  const { navItems, logo } = useStyles();
   const theme = useTheme();
-  const { logo } = useStyles();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const trigger = useScrollTrigger();
 
   const Icon = themeMode ? WbSunnyOutlined : Brightness3Outlined;
 
   return (
     <Grid item>
-      <HideOnScroll>
+      {/* Hide on scroll */}
+      <Slide appear={false} direction="down" in={!trigger}>
         <AppBar position="fixed" color="default">
           <Toolbar>
             <Link variant="h6"
@@ -128,7 +128,10 @@ function Header(props) {
             >
               LOGO
             </Link>
-            <Typography variant="h6">
+            <Typography
+              className={navItems}
+              variant="h6"
+            >
               {isMobile ?
                 <MobileNavbar />
                 :
@@ -150,7 +153,7 @@ function Header(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-      </HideOnScroll>
+      </Slide>
     </Grid >
   )
 }
