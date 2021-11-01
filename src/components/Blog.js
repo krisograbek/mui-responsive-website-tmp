@@ -1,13 +1,23 @@
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import React from 'react'
+import makeStyles from '@mui/styles/makeStyles'
 
-function Projects() {
+const useStyles = makeStyles(({
+  item: {
+    paddingTop: 64,
+  }
+}));
+
+function Blog() {
+  const { item } = useStyles();
   return (
-    <Grid id="projects" container>
-      <Grid item>
-        <Typography variant="h4">
-          Projects
+    <Grid id="blog" container>
+      <Grid item
+        className={item}
+      >
+        <Typography variant="h4" component="h2">
+          Blog
         </Typography>
       </Grid>
       <Grid item>
@@ -33,4 +43,4 @@ function Projects() {
   )
 }
 
-export default Projects
+export default Blog
