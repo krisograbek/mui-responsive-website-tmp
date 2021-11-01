@@ -1,5 +1,4 @@
-import Brightness3Outlined from '@mui/icons-material/Brightness3Outlined';
-import WbSunnyOutlined from '@mui/icons-material/WbSunnyOutlined';
+
 import { Grid } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
@@ -64,7 +63,7 @@ function App() {
   const classes = useStyles();
   const [themeMode, setThemeMode] = useState(true);
   const theme = themeMode ? darkTheme : lightTheme;
-  const Icon = themeMode ? WbSunnyOutlined : Brightness3Outlined;
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -73,19 +72,8 @@ function App() {
           container
           direction="column"
         >
-          <Header />
+          <Header setThemeMode={setThemeMode} themeMode={themeMode} />
           <Content />
-          <Grid item>
-            <IconButton
-              edge="end"
-              color="primary"
-              size="small"
-              aria-label="mode"
-              onClick={() => setThemeMode(!themeMode)}
-            >
-              <Icon fontSize="large" />
-            </IconButton>
-          </Grid>
         </Grid>
       </Paper>
     </ThemeProvider>
