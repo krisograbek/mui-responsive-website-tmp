@@ -1,9 +1,13 @@
-import { Grid, Typography } from '@mui/material'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import Fab from '@mui/material/Fab'
+import Grid from '@mui/material/Grid'
 import React from 'react'
 import About from './About'
 import Blog from './Blog'
 import Contact from './Contact'
 import Projects from './Projects'
+import ScrollTop from './ScrollTop'
+
 
 function Content() {
   return (
@@ -28,6 +32,11 @@ function Content() {
           <Contact />
         </Grid>
       </Grid>
+      <ScrollTop>
+        <Fab color="primary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </Grid>
   )
 }
