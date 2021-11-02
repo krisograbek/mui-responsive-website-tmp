@@ -16,14 +16,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import useTheme from '@mui/styles/useTheme';
 import React, { useState } from 'react';
 
-const mobileStyles = makeStyles({
-  menu: {
-    // flexGrow: 1,
-    // alignSelf: 'flex-end',
-    // justifySelf: 'flex-end'
-  }
-});
-
 const useStyles = makeStyles({
   navItems: {
     flexGrow: 1
@@ -41,9 +33,9 @@ const menuItems = [
 ]
 
 function MobileNavbar() {
-  const { menu } = mobileStyles();
   const [anchor, setAnchor] = useState(null);
   const open = Boolean(anchor)
+
   const handleMenu = (event) => {
     setAnchor(event.currentTarget);
   };
@@ -51,16 +43,15 @@ function MobileNavbar() {
   const handleMenuClose = () => {
     setAnchor(null);
   }
+
   return (
     <Grid
       container
-      // spacing={1}
       justifyContent="flex-end"
     >
       <IconButton
         aria-label="menu"
         onClick={handleMenu}
-        className={menu}
         color="primary"
       >
         <MenuIcon />
@@ -98,10 +89,15 @@ function DesktopNavbar() {
       spacing={2}
       justifyContent="flex-end"
     >
-      <Grid item><Link href="#about">About</Link></Grid>
-      <Grid item><Link href="#projects">Projects</Link></Grid>
-      <Grid item><Link href="#blog">Blog</Link></Grid>
-      <Grid item><Link href="#contact">Contact</Link></Grid>
+      {menuItems.map(({ link, name }) => {
+        return (
+          <Grid item>
+            <Link href={link}>
+              {name}
+            </Link>
+          </Grid>
+        )
+      })}
     </Grid>
   )
 }
@@ -117,7 +113,6 @@ function Header(props) {
 
   return (
     <Grid item>
-      {/* Hide on scroll */}
       <Slide appear={false} direction="down" in={!trigger}>
         <AppBar position="fixed" color="default">
           <Toolbar>
