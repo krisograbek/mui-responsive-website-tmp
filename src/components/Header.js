@@ -35,6 +35,7 @@ const menuItems = [
 function MobileNavbar() {
   const [anchor, setAnchor] = useState(null);
   const open = Boolean(anchor)
+
   const handleMenu = (event) => {
     setAnchor(event.currentTarget);
   };
@@ -42,6 +43,7 @@ function MobileNavbar() {
   const handleMenuClose = () => {
     setAnchor(null);
   }
+
   return (
     <Grid
       container
