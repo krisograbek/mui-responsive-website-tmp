@@ -64,7 +64,7 @@ const darkTheme = createTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
-    padding: 20
+    // padding: 20
   }
 }));
 

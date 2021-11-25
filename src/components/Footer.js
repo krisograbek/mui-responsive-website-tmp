@@ -136,7 +136,7 @@ function Footer() {
         zIndex: 1
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box
           px={{ xs: 3, md: 5 }}
           py={{ xs: 3, md: 5 }}
@@ -158,12 +158,12 @@ function Footer() {
                 pt={{ xs: 2, sm: 3 }}
                 borderTop={1}
               >
-                Designed and created by Krzysztof Ograbek &copy; {new Date().getFullYear()}
+                Template Designed and created by Krzysztof Ograbek &copy; {new Date().getFullYear()}
               </Box>
             </Grid>
             <Grid item xs={12} textAlign="center">
               <Box>
-                <Link href="https://github.com/krisograbek/github-pages-website"
+                <Link href="https://github.com/krisograbek/mui-responsive-website-tmp"
                   className={classes.link}
                   underline="hover"
                   target="_blank"
