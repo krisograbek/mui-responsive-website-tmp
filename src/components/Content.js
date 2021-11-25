@@ -8,29 +8,27 @@ import Contact from './Contact'
 import Projects from './Projects'
 import ScrollTop from './ScrollTop'
 
+const sections = [
+  <About />,
+  <Projects />,
+  <Blog />,
+]
 
 function Content() {
   return (
-    <Grid
-      item
-      id="home"
-      style={{
-        paddingTop: 32
-      }}
-    >
-      <Grid container>
-        <Grid item>
-          <About />
-        </Grid>
-        <Grid item>
-          <Projects />
-        </Grid>
-        <Grid item>
-          <Blog />
-        </Grid>
-        <Grid item>
-          <Contact />
-        </Grid>
+    <Grid item px={1} pb={12}>
+      <Grid container
+        direction="column"
+        alignContent="stretch">
+        {sections.map((section) => {
+          return (
+            <Grid item
+              pt={{ xs: 10, sm: 15, md: 20 }}
+            >
+              {section}
+            </Grid>
+          )
+        })}
       </Grid>
       <ScrollTop>
         <Fab color="primary" size="small" aria-label="scroll back to top">

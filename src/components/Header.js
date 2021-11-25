@@ -15,6 +15,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import makeStyles from '@mui/styles/makeStyles';
 import useTheme from '@mui/styles/useTheme';
 import React, { useState } from 'react';
+import Container from '@mui/material/Container'
 
 const useStyles = makeStyles({
   navItems: {
@@ -115,38 +116,41 @@ function Header(props) {
     <Grid item>
       <Slide appear={false} direction="down" in={!trigger}>
         <AppBar position="fixed" color="default">
-          <Toolbar>
-            <Link variant="h6"
-              className={logo}
-              color="primary"
-              href="#"
-            >
-              LOGO
-            </Link>
-            <Typography
-              className={navItems}
-              variant="h6"
-            >
-              {isMobile ?
-                <MobileNavbar />
-                :
-                <DesktopNavbar />
-              }
-            </Typography>
-            <Typography
-              style={{ paddingLeft: 20 }}
-            >
-              <IconButton
-                edge="end"
+          <Container maxWidth="lg">
+
+            <Toolbar>
+              <Link variant="h6"
+                className={logo}
                 color="primary"
-                size="small"
-                aria-label="mode"
-                onClick={() => setThemeMode(!themeMode)}
+                href="#"
               >
-                <Icon fontSize="medium" />
-              </IconButton>
-            </Typography>
-          </Toolbar>
+                LOGO
+              </Link>
+              <Typography
+                className={navItems}
+                variant="h6"
+              >
+                {isMobile ?
+                  <MobileNavbar />
+                  :
+                  <DesktopNavbar />
+                }
+              </Typography>
+              <Typography
+                style={{ paddingLeft: 20 }}
+              >
+                <IconButton
+                  edge="end"
+                  color="primary"
+                  size="small"
+                  aria-label="mode"
+                  onClick={() => setThemeMode(!themeMode)}
+                >
+                  <Icon fontSize="medium" />
+                </IconButton>
+              </Typography>
+            </Toolbar>
+          </Container>
         </AppBar>
       </Slide>
     </Grid >
